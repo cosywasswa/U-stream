@@ -21,7 +21,8 @@ return response.data;
         return thunkAPI.rejectWithValue('something went wrong', error)
     }
 })
-initialState = {
+
+const initialState = {
     videos: [],
     comments: [],
     isLoading: false,
@@ -30,26 +31,26 @@ initialState = {
 
 const videoSlice = createSlice({
     initialState,
-    name: videoList,
+    name: 'videoList',
     reducers: {
 
     },
-    extraReducers: (builder) =>{
+    extraReducers: (builder) => {
         builder.addCase(fetchVideos.pending, (state) =>{
-            state.isLoading = true
-        }),
+            state.isLoading = true;
+        });
         builder.addCase(fetchVideos.fulfilled, (state, action) =>{
             state.isLoading = false
             state.videos = action.payload;
-        }),
+        });
         builder.addCase(fetchComments.pending, (state) =>{
             state.isLoading = true
-        }),
+        });
         builder.addCase(fetchComments.fulfilled, (state, action) =>{
             state.isLoading = false
             state.comments = action.payload ;
         })
-    }
+    },
 })
 
 export default videoSlice.reducer
