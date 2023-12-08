@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 
-const videoUrl = 'https://localhost/3000'
+const videoUrl = 'http://127.0.0.1:4000/api/v1/videos'
 const commentUrl = 'https://localhost/3000'
 
 const fetchVideos = createAsyncThunk('videos/fetchVideos', async(thunkAPI) =>{
@@ -19,6 +19,17 @@ const response = await axios.get()
 return response.data;
     } catch(error){
         return thunkAPI.rejectWithValue('something went wrong', error)
+    }
+})
+
+ export const addVideo = createAsyncThunk('videos/addVideo', async(thunkAPI, data) =>{
+    console.log('Data being sent:', data);
+    try{
+const response = await axios.post(videoUrl, data);
+return response.data;
+
+    } catch(error){
+        return thunkAPI.rejectWithValue(error)
     }
 })
 

@@ -13,19 +13,19 @@ function App() {
     const storedUser = localStorage.getItem('user');
     if(storedUser){
       const user = JSON.parse(storedUser);
-      console.log(user.status.data.id);
+      console.log(user);
       setUser(user);
     }
   }, [setUser]);
  
   return (
     <div className="App">
-      <Navbar />
-
       <Routes>
       <Route path="/" element = {<Splash />} />
+        <Route element = {<Navbar />}>
         <Route path="/home" element = {<Home />} />
         <Route path="/upload" element = {<Upload />} />
+        </Route>
       </Routes>
       </div>
   );

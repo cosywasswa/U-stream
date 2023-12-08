@@ -8,7 +8,7 @@ const Splash = () => {
        setCurrentForm(formName);
     }
   return (
-<main>
+<main className="bg-gray-100 h-screen">
 {
     currentForm === 'Login'? <Login onFormSwitch={toggleForm} />:<Signup onFormSwitch={toggleForm} onSignupSuccess={toggleForm} />
 }
