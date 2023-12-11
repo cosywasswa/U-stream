@@ -20,19 +20,28 @@ const Upload = () => {
  
   const handleFormSubmit = async (e) =>{
     e.preventDefault();
-    const data = new FormData();
-data.append('title', title);
-data.append('description', description);
-data.append('category', category);
-data.append('user_id', userID);
-data.append('video_file', videoFile);
+    const formData = new FormData();
+formData.append("video[title]", title);
+formData.append("video[description]", description);
+formData.append("video[category]", category);
+formData.append("video[user_id]", userID);
+formData.append("video[video_file]", videoFile);
+
+// const form = {
+//   "video": {
+//     "title": title,
+//     "description": description,
+//     "category": category,
+//     "user_id":userID
+//   }
+// }
      
-for (const value of data.values()) {
+for (const value of formData.values()) {
   console.log(value);
 }
    
-    if(videoFile && title && description && category){
- dispatch(addVideo(data));
+    if(title && description && category){
+ dispatch(addVideo(formData));
 console.log("successfull")
     }
     else{
@@ -64,7 +73,7 @@ console.log("successfull")
 </div>
 <div className="flex justify-center items-center gap-10 w-screen pt-5">
   <label htmlFor="video" className="text-20 pl-10">Video</label>
-  <input type="file" accept="video/*" id="video" className="ml-7" name="videoFile" onChange={handleFileUpload}/>
+  <input type="file" accept="*" id="video" className="ml-7" name="videoFile" onChange={handleFileUpload}/>
 </div>
 <div className="pt-5">
   <button type="submit" className="text-20 bg-green-500 px-2 flex rounded-sm text-white ml-10">Upload</button>
