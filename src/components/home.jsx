@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchVideos, isLoading } from '../redux/videoSlice/videoSlice';
+import { fetchVideos } from '../redux/videoSlice/videoSlice';
 import Video from './video';
 
 
@@ -24,8 +24,8 @@ const Home= () => {
   <Video
   key={clip.id}
   title={clip.title} 
-  description = {clip.description}
-  video_link = {clip.video_file}
+  description={clip.description}
+  video_url={clip.video_url}
   />
 </article>
     ))

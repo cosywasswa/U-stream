@@ -73,7 +73,7 @@ console.log("successfull")
 </div>
 <div className="flex justify-center items-center gap-10 w-screen pt-5">
   <label htmlFor="video" className="text-20 pl-10">Video</label>
-  <input type="file" accept="*" id="video" className="ml-7" name="videoFile" onChange={handleFileUpload}/>
+  <input type="file" accept="video/*" id="video" className="ml-7" name="videoFile" onChange={handleFileUpload}/>
 </div>
 <div className="pt-5">
   <button type="submit" className="text-20 bg-green-500 px-2 flex rounded-sm text-white ml-10">Upload</button>
