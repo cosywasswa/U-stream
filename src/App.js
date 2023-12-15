@@ -5,6 +5,7 @@ import Home from './components/home';
 import Upload from './components/upload';
 import Navbar from './components/navbar';
 import Splash from './components/Splash';
+import Account from './components/Account';
 import { useUser} from './components/context';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route element = {<Navbar />}>
         <Route path="/home" element = {<Home />} />
         <Route path="/upload" element = {<Upload />} />
+        <Route path="/account" element = {<Account />} />
         </Route>
       </Routes>
       </div>
