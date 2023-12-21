@@ -13,9 +13,10 @@ export const fetchVideos = createAsyncThunk('videos/fetchVideos', async(thunkAPI
     }
 })
 
-export const fetchComments = createAsyncThunk('comments/fetchComments', async(thunkAPI) =>{
+export const fetchComments = createAsyncThunk('comments/fetchComments', async(videoId, thunkAPI) =>{
     try{
-const response = await axios.get()
+        const commentUrl = `http://127.0.0.1:4000/api/v1/videos/${videoId}/comments`
+const response = await axios.get(commentUrl)
 return response.data;
     } catch(error){
         return thunkAPI.rejectWithValue('something went wrong', error)
@@ -32,7 +33,7 @@ return response.data;
     }
 })
 
-export const addComment = createAsyncThunk('comments/addComment', async(data, videoId, thunkAPI) =>{
+export const addComment = createAsyncThunk('comments/addComment', async({data, videoId}, thunkAPI) =>{
     try{
         const commentUrl = `http://127.0.0.1:4000/api/v1/videos/${videoId}/comments`
 const response = await axios.post(commentUrl, data);

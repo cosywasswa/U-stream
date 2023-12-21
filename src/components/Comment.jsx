@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useUser } from './context';
 import { addComment, fetchComments } from '../redux/videoSlice/videoSlice';
 
 
 const Comment = ({videoId}) => {
     const dispatch = useDispatch();
+    const { comments } = useSelector((store) =>store.videoList.comments)
     const { user } = useUser();
     const userId = user?.data?.status?.data?.id;
     const [description, setDescription] = useState('');
     const [activeComments, setActiveComments] = useState(false);
+
+  const getComments = (videoId) =>{
+        if(videoId){
+    dispatch(fetchComments( videoId ))
+}
+    }
+
+    getComments();
+
+// useEffect(() =>{
+// getComments();
+// }, [])
 
    const handleFormSubmit = (e) =>{
     e.preventDefault();
@@ -21,16 +34,23 @@ dispatch(addComment({
        "video_id": videoId
     }
 }))
+setDescription('');
     }
-    setDescription('')
    }
    const toggleActive = () =>{
 setActiveComments(!activeComments)
    }
+   
   return (
     <section className="comment-container ">
         <div>
-        <p>{}</p>
+    {
+            comments &&
+            comments.map((comment, index)=>(
+<span key={index}>{comment.description}</span>
+            )
+            )
+            }
         </div>
         <div>
             <form className="flex justify-center items-center" onSubmit={handleFormSubmit}>
