@@ -7,7 +7,7 @@ const Video = ({ title, description, video_url}) => {
             <p>{title}</p>
         </div>
         <div className="flex-centre bg-slate-300 w-full h-auto">
-        <video controls className="w-screen h-auto">
+        <video className="w-screen h-auto">
           <source src={video_url} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

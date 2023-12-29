@@ -33,10 +33,11 @@ return response.data;
     }
 })
 
-export const addComment = createAsyncThunk('comments/addComment', async({data, videoId}, thunkAPI) =>{
+export const addComment = createAsyncThunk('comments/addComment', async(payload, thunkAPI) =>{
+    const { data, videoId } = payload;
     try{
         const commentUrl = `http://127.0.0.1:4000/api/v1/videos/${videoId}/comments`
-const response = await axios.post(commentUrl, data);
+const response = await axios.post(commentUrl, payload);
 return response.data;
 
     } catch(error){
@@ -65,9 +66,6 @@ const videoSlice = createSlice({
         builder.addCase(fetchVideos.fulfilled, (state, action) =>{
             state.isLoading = false
             state.videos = action.payload;
-        });
-        builder.addCase(fetchComments.pending, (state) =>{
-            state.isLoading = true
         });
         builder.addCase(fetchComments.fulfilled, (state, action) =>{
             state.isLoading = false
