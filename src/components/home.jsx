@@ -10,7 +10,7 @@ import { faCommentDots, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 const Home= () => {
   const dispatch = useDispatch();
   const {videos, isLoading} = useSelector((store) => store.videoList)
-  const {comments} = useSelector((store)=> store.videoList.comments)
+  const comments = useSelector((store)=> store.videoList.comments)
   const {user} = useUser();
   const userId = user?.data?.status?.data?.id;
   const [description, setDescription] = useState('');
